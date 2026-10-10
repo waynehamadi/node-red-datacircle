@@ -1,0 +1,44 @@
+{
+  "name": "@datacircle/node-red-datacircle",
+  "version": "0.1.0",
+  "description": "Node-RED node for Datacircle: a LinkedIn profile by its URL through Up2Data or HarvestAPI, and your balance. Same request, same price, no markup.",
+  "license": "MIT",
+  "homepage": "https://datacircle.dev",
+  "keywords": [
+    "node-red",
+    "datacircle",
+    "linkedin",
+    "linkedin-profile",
+    "enrichment",
+    "b2b-data",
+    "up2data",
+    "harvestapi"
+  ],
+  "author": {
+    "name": "Datacircle",
+    "email": "wayne@datacircle.dev",
+    "url": "https://datacircle.dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/waynehamadi/node-red-datacircle.git"
+  },
+  "bugs": {
+    "url": "https://github.com/waynehamadi/node-red-datacircle/issues"
+  },
+  "files": [
+    "datacircle.js",
+    "datacircle.html",
+    "icons",
+    "examples"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "node-red": {
+    "version": ">=3.0.0",
+    "nodes": {
+      "datacircle": "datacircle.js"
+    }
+  }
+}
