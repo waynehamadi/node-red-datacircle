@@ -1,5 +1,5 @@
 const API = "https://api.datacircle.dev";
-const PROVIDERS = ["up2data", "harvestapi"];
+const PROVIDERS = ["up2data", "harvestapi", "fetchin"];
 
 module.exports = function (RED) {
     function DatacircleConfigNode(config) {
@@ -18,6 +18,9 @@ module.exports = function (RED) {
         headers["X-Data-Provider"] = provider;
         if (provider === "harvestapi") {
             return fetch(API + "/linkedin/profile?url=" + encodeURIComponent(url), { headers, signal: AbortSignal.timeout(60000) });
+        }
+        if (provider === "fetchin") {
+            return fetch(API + "/api/v1/profile?profileUrlOrUrn=" + encodeURIComponent(url), { headers, signal: AbortSignal.timeout(60000) });
         }
         headers["Content-Type"] = "application/json";
         return fetch(API + "/v1/profiles/enrich", {

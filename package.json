@@ -1,7 +1,7 @@
 {
   "name": "@datacircle/node-red-datacircle",
-  "version": "0.1.0",
-  "description": "Node-RED node for Datacircle: a LinkedIn profile by its URL through Up2Data or HarvestAPI, and your balance. Same request, same price, no markup.",
+  "version": "0.1.1",
+  "description": "Node-RED node for Datacircle: a LinkedIn profile by its URL through Up2Data, HarvestAPI or Fetchin, and your balance. Same request, same price, no markup.",
   "license": "MIT",
   "homepage": "https://datacircle.dev",
   "keywords": [
@@ -12,7 +12,8 @@
     "enrichment",
     "b2b-data",
     "up2data",
-    "harvestapi"
+    "harvestapi",
+    "fetchin"
   ],
   "author": {
     "name": "Datacircle",

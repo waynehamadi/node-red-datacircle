@@ -81,6 +81,7 @@ Sign up at datacircle.dev with your work email: a $5 credit, that's 2,105 Linked
         <select id="node-input-provider">
             <option value="up2data">Up2Data</option>
             <option value="harvestapi">HarvestAPI</option>
+            <option value="fetchin">Fetchin</option>
         </select>
     </div>
     <div class="form-row datacircle-profile-row">
@@ -90,7 +91,7 @@ Sign up at datacircle.dev with your work email: a $5 credit, that's 2,105 Linked
 </script>
 
 <script type="text/markdown" data-help-name="datacircle">
-A LinkedIn profile by its URL, through Up2Data or HarvestAPI, or your Datacircle balance.
+A LinkedIn profile by its URL, through Up2Data, HarvestAPI or Fetchin, or your Datacircle balance.
 
 You send the provider's own request to api.datacircle.dev, with your Datacircle key. That's the only change.
 
@@ -98,7 +99,7 @@ You send the provider's own request to api.datacircle.dev, with your Datacircle 
 
 : payload (string) : the LinkedIn profile URL, when the node's URL is empty.
 : url (string) : the LinkedIn profile URL, before `msg.payload`.
-: provider (string) : `up2data` or `harvestapi`, instead of the node's Provider.
+: provider (string) : `up2data`, `harvestapi` or `fetchin`, instead of the node's Provider.
 : operation (string) : `profile` or `balance`, instead of the node's Operation.
 
 ### Outputs
@@ -110,10 +111,14 @@ You send the provider's own request to api.datacircle.dev, with your Datacircle 
 
 Each request goes to the provider and gets the profile as it is today.
 
+$2.375 per 1,000 through Up2Data (a profile it can't find is free), $3.70 per 1,000 through HarvestAPI.
+$1.485 per 1,000 through Fetchin, a profile it can't find billed the same.
+
 A status other than 2xx is an error: a Catch node gets the message, with `msg.statusCode` and `msg.payload`.
 
 - `402`: a call your balance can't cover answers 402. Add funds, from $5, on your dashboard.
-- `429`: Up2Data takes $1 a day per account (421 profiles), with a shared daily limit for all customers, then answers 429 until 00:00 UTC; HarvestAPI has no daily limit.
+- `404`: Fetchin can't find that profile (`code: PROFILE_NOT_FOUND`). We charge $0.001485 for it.
+- `429`: Up2Data takes $1 a day per account (421 profiles), with a shared daily limit for all customers, then answers 429 until 00:00 UTC. HarvestAPI has no daily limit. Fetchin has no daily limit either. Fetchin also answers 429 at its rate limit: send the request again a second later. We don't charge for a 429.
 - `422`: Up2Data can't reach that profile (private or deleted). Not charged.
 
 ### References
